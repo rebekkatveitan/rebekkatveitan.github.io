@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fotball</title>
+    <style>
+main > img{
+        width: 100%;
+}
+@keyframes fotball{
+    to {
+        background-position: 0-2280px;
+    }
+}
+@keyframes snurr{
+    to {
+        transform: rotate(3turn);
+    }
+}
+@keyframes moveRight {
+    from{
+        left: 0;
+    }
+    to {
+        left: 825px;
+    }
+}
+
+.fotball{
+    position: absolute;
+    background-image: url(fotball.jpg);
+    width: 690px;
+    height: 690px;
+
+    animation-name: moveRight, snurr;
+    animation-duration: 3s, 4s;
+    animation-timing-function: linear;
+     animation-iteration-count: infinite;
+    margin-right:10px;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div id=" f1" class="fotball"></div>
+
+</body>
+</html>
