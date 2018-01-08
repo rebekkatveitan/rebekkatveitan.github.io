@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Hands of Gold</title>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pinyon+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lustria" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body{
+            margin: 0;
+        }
+        header{
+            padding:
+            border-top: 3px solid #343434;
+            background-color: white;
+            width: 100%;
+        }
+        header > article > div > pre{
+            position: absolute;
+            top: 50%;
+            width: 55%;
+            text-align: center;
+            color: #343434;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 46px;
+            margin-left: 320.4px;
+            padding: 15px;
+            background-color: #FFFFFFA6;
+        }
+        header > article > div > img{
+            width: 100%;
+            max-height: 500px;
+        }
+        nav > div > a > pre > span{
+            font-family: 'Cinzel Decorative', cursive;
+        }
+        header > nav > div > a {
+            text-decoration: none;
+        }
+        .left{
+            text-align: center;
+            font-size: 26px;
+            width: 100%;
+            padding-top: 20px;
+        }
+        .right > a{
+            text-decoration: none;
+            list-style-type: none;
+            padding: 40px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            overflow: hidden;
+            background-color: white;
+            border: 1px transparent;
+        }
+        li:first-child{
+            margin-left: 35%;
+        }
+        li {
+            float: left;
+        }
+        li a, .dropbtn {
+            display: inline-block;
+            color: black;
+            font-family: open-sans , sans-serif;
+            text-align: center;
+            padding: 7px 60px;
+            text-decoration: none;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        li a:hover, .dropdown:hover .dropbtn {
+
+            background-color: white;
+            border: 2px solid #a29060;
+        }
+        li.dropdown {
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 7px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: #343434;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content p {
+            text-align: center;
+            font-family: open-sans , sans-serif;
+            padding: 8px;
+        }
+        .dropdown-content a:hover {background-color: white}
+
+        nav {
+            padding: 5px;
+            text-decoration: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr ;
+            align-items: center;
+        }
+        main{
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            background-color: #f6f6f6;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        main > article > div {
+            position: relative;
+        }
+        main > article img {
+            width: 100%;
+        }
+
+        .article-box_img {
+            width: 100%;
+            max-height: 500px;
+            max-width: 550px;
+
+            display: grid;
+        }
+        main > article > p{
+            text-align: center;
+            font-family: open-sans , sans-serif;
+        }
+        .article-box_content {
+            padding: 10px 15px 10px 15px;
+            background-color: white;
+        }
+        main > article > div > h4{
+            font-size: 22px;
+            font-family: "kepler-std-display", serif;
+            font-weight: 100;
+            color: #a29060;
+        }
+        main > article  > p{
+            font-size: 15px;
+            font-family: "open-sans", sans-serif;
+            color: black;
+        }
+        main > article > pre{
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 26px;
+            text-align: center;
+        }
+        .firer .booking-box{
+            max-width: 84%;
+        }
+        .firer {
+            grid-column: span 4;
+            max-width: 90%;
+            margin: 20px;
+
+            display: grid;
+            grid-template-rows: auto 1fr;
+        }
+        .tolver {
+            grid-column: span 12;
+            padding-top: 30px;
+            padding-bottom: 30px;
+
+            background-color: white;
+        }
+        *{
+            box-sizing: inherit;
+        }
+        .booking-box_form{
+            display: flex;
+            height: auto;
+            overflow: visible;
+            transition: height .5s 0s;
+
+        }
+        .booking-box{
+            padding: 35px 30px 30px 30px;
+            background-color: #343434;
+            width: 100%;
+        }
+        .booking-box_title{
+            text-align: center;
+            color: white;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 400;
+        }
+        .booking-box_input {
+            margin-bottom: 6px;
+        }
+        .selectlist{
+            background-size: 12px;
+            color: white;
+            width: 100%;
+            outline: none;
+            cursor: pointer;
+            padding: 0 10px;
+            height: 40px;
+            font-weight: 100;
+            line-height: 1.4;
+            font-size: 14px;
+            border: 1px solid #4a4a4a;
+            background-color: transparent;
+        }
+        .button select{
+            text-transform: none;
+        }
+        .booking-box_input label{
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .booking-box_input.arrival{
+            position: relative;
+        }
+        .booking-box_input--big [type="text"]{
+            flex: 0 1 100%;
+            text-align: center;
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid #4a4a4a;
+            color: white;
+            outline: none;
+            padding: 10px 5px;
+        }
+        .booking-box_input--big input[type="submit"]{
+            font-family: "kepler-std-display", serif;
+            font-size: 21px;
+            width: 50%;
+            color: white;
+            font-style: italic;
+            font-weight: 100;
+            outline: none;
+            background: transparent;
+            border: 1px solid #a29060;
+            line-height: 20px;
+            padding: 11px 50px;
+            margin-top: 15px;
+            position: relative;
+        }
+        .booking-box_input--big a{
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .booking-box_input--big{
+            text-align: center;
+        }
+        .booking-box_input--big input[type="submit"]:hover
+        {
+            background: #a29060;
+            cursor: pointer;
+        }
+        div{
+            display: block;
+        }
+
+        footer{
+            background-color: #343434;
+            color: white;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 70vh;
+            font-size: 14px;
+            width: 100%;
+
+        }
+        .footer_content{
+            justify-content: space-between;
+            margin: 0 auto;
+            display: inline-flex;
+        }
+        .footer_item{
+            padding: 10px 30px;
+            margin-right: 10px;
+        }
+        .footer_item_title{
+            font-family: "kepler-std-display", serif;
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+        .footer_logo{
+            text-align: center;
+            padding-bottom: 30px;
+        }
+        .search-form .search-bar{
+            background-color: #343434;
+            border: 1px solid #a29060;
+            font-size: 15px;
+            color: white;
+        }
+        .search-form {
+            position: relative;
+        }
+        .submit{
+            position: absolute;
+            right:15px;
+            top: 5px;
+
+        }
+        footer > div > pre > span{
+            font-family: 'Cinzel Decorative', cursive;
+        }
+        p2{
+            text-align: center;
+            font-size: 10px;
+            font-family: open-sans , sans-serif;
+            padding-top: 60px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+
+    <nav>
+
+        <div class="left">
+            <img src="logo.png">
+            <a href="HovedsideX.html"><pre><span style="color: black">Hands of</span> <span style="color: #DAA520">Gold</span></pre></a>
+        </div>
+
+
+
+        <div class="right">
+            <a href="Side%202.html">
+                <img src="head-icon-01.png">
+            </a>
+
+            <a href="Side%203.html">
+                <img src="massage-icon-01.png">
+            </a>
+
+            <a href="Side%204.html">
+                <img src="hotel%20icon-01.jpg">
+            </a>
+        </div>
+
+    </nav>
+
+    <ul>
+        <li class="dropdown">
+                <a class="dropbtn">Åpningstider/Spa</a>
+                <div class="dropdown-content">
+                    <p>Mandag - 10-20</p>
+                    <p>Tirsdag - 10-20</p>
+                    <p>Onsdag - stengt</p>
+                    <p>Torsdag - 10-20</p>
+                    <p>Fredag - 10-22</p>
+                    <p>Lørdag - 12-23</p> <p>Søndag - stengt</p></div>
+                </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Restaurant & Treningsenter</a>
+            <div class="dropdown-content">
+                <a href="#">Meny</a>
+                <a href="#">Trening</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Medlem</a>
+            <div class="dropdown-content">
+                <a href="#">Logg inn</a>
+                <a href="#">Goder</a>
+                <a href="#">Tilbud</a>
+            </div>
+        </li>
+    </ul>
+
+    <article>
+        <div>
+            <pre><span style="color: black">Let your body get what it deserve...</span> <span style="color: #DAA520">Gold</span></pre>
+            <img src="background-pick.jpg">
+        </div>
+    </article>
+</header>
+
+<main>
+
+
+    <article class="tolver">
+        <pre><span style="color: black">Hands of</span> <span style="color: #DAA520">Gold</span> <span style="color: black">Spa & Hotell</span></pre>
+        <p>Hands of Gold er til for deg som vil gi det beste kroppen kan tilby. Fra generasjon til generasjon har vi holdt på vår spesielle ingrediens, som blir tatt i bruk i alle behandlinger. Hos Hands of Gold får du 24 karats gul i både massager og ansiktspleie, for at du skal føle deg ekstra spesiell.</p>
+
+        <p>Spa-et består av 4 forskjellige basseng, der du får muligheten til å svømme både inne ut. Terapi basseng for spesielt tilpassede, lengdebasseng og boblebad.</p>
+
+        <p>Spa-ets brede utvalg av massører og spesielt sertifiserte ved bruk av gull gir deg de beste behandlingene</p>
+
+    </article>
+
+    <article class="firer">
+        <div class="article-box_img">
+            <img src="restaurang.jpeg">
+        </div>
+        <div class="article-box_content">
+            <h4 class="article-box_title">Restaurang & Bar</h4>
+            <p class="article-box_text">Hans of Gold Spa består av to restauranter, med utsøkt, 5 stjernes mat. Og en bar, med vår klassiske gull champagne.</p>
+        </div>
+    </article>
+
+    <article class="firer">
+        <div class="article-box_img">
+            <img src="spa-treatment%20.jpg">
+        </div>
+        <div class="article-box_content">
+            <h4 class="article-box_title">Behandlinger/ Meny</h4>
+            <p class="article-box_text">Her finner du oversikten over alle behandlingene vi tilbyr</p>
+        </div>
+    </article>
+
+
+    <article class="firer">
+        <div class="article-box_img">
+            <img src="pool.jpeg">
+        </div>
+        <div class="article-box_content">
+            <h4 class="article-box_title">Avdelinger/Basseng</h4>
+            <p class="article-box_text">Anlegget består av flere forskjellige typer basseng, og er egnet hver enkelt. Også for enkelte med spesielle behov</p>
+        </div>
+    </article>
+
+    <article class="firer">
+        <div class="article-box_img">
+            <img src="side%204%20pic4.jpg">
+        </div>
+        <div class="article-box_content">
+            <h4 class="article-box_title">Hotell</h4>
+            <p class="article-box_text">Hans of gold Hotell gir deg muligheten for å utnytte et maskimalt opphold, her hos oss.</p>
+        </div>
+    </article>
+
+    <article class="firer">
+        <div class="article-box_img">
+            <img src="trening.jpg">
+        </div>
+        <div class="article-box_content">
+            <h4 class="article-box_title">Treningssentret vårt</h4>
+            <p class="article-box_text">Treningsentret er åpent 9-21 og kan benyttes av alle medlemer</p>
+        </div>
+    </article>
+
+    <div class="firer">
+        <div class="booking-box">
+            <h3 class="booking-box_title booking-open-js">Bestill time</h3>
+            <form class="booking-box_form" name="searchform" id="searchForm"></form>
+            <div class="booking-box_input booking-box_input--big arrival">
+                <input name="Arrival" id="Arrival-small" class="date" type="text" value="2018-01-08">
+            </div>
+            <div class="booking-box_input">
+                <label for="Klokkeslett">Klokkeslett</label>
+                <div class="styled-select">
+                    <select name="NroOfNights" class="selectlist">
+                        <option value="1">10:00-11:00</option>
+                        <option value="2">11:00-12:00</option>
+                        <option value="3">12:00-13:00</option>
+                        <option value="4">14:00-15:00</option>
+                        <option value="5">15:00-16:00</option>
+                        <option value="6">19:00-20:00</option>
+                        <option value="7">20:00-21:00</option>
+                    </select>
+                </div>
+            </div>
+            <div class="booking-box_input">
+                <div class="booking-box_input">
+                    <label for="Behandling">Behandling</label>
+                    <div class="styled-select">
+                        <select name="NroOfRooms" class="selectlist">
+                            <option value="1">Massage</option>
+                            <option value="2">Asiktsbehandling</option>
+                            <option value="3">Spa pakke</option>
+                            <option value="4">Peeling/ Skrub</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-box_input"></div>
+            <div class="booking-box_input"></div>
+            <div class="booking-box_input"></div>
+            <div class="booking-box_input">
+                <label for="Antall">Antall personer</label>
+                <div class="styled-select numberAdults">
+                    <select name="NroOfAdults" class="selectlist">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="booking-box_input">
+                <label for="Restaurang">Reservasjon av bord</label>
+                <div class="styled-select">
+                    <select name="NroOfChildren" class="selectlist">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">Igen</option>
+                    </select>
+                </div>
+            </div>
+            <div class="booking-box_input booking-box_input--big">
+                <input type="submit" name="fetchotels"  class="c2a" id="bookingSubmit" value="Finn time">
+                <a href="#" onclick=" _gaq.push(['_trackEvent', 'Booking' , 'Avbestilling' ]); " target="BookingFrame" id="cancel">Avbestilling</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--
+    <article class="sekser">
+        <img src="gold2.jpg">
+    </article>
+    -->
+
+</main>
+
+<footer>
+    <div class="footer_logo">
+        <img src="logo.png">
+        <pre><span style="color: white">Hands of</span> <span style="color: #DAA520">Gold</span></pre>
+    </div>
+    <div class="footer_content">
+        <div class="footer_item">
+            <div class="footer_item_title">Kontakt:</div>
+            <p>+4790675847</p>
+        </div>
+        <div class="footer_item">
+            <div class="footer_item_title">E-postadresse:</div>
+            <p>hansofGold@spa.no</p>
+        </div>
+        <div class="footer_item">
+            <div class="footer_item_title">Adresse:</div>
+            <p> Hands of Gold</p> <p>Persgate 15</p> <p>1460 Bergen</p>
+        </div>
+        <div class="footer_item">
+            <div class="footer_item_title">Følg oss:</div>
+            <div class="firer">
+                <img src="../Prosjekt%202017/facebook-icon-01.png">
+            </div>
+        </div>
+        <div class="footer_item"></div>
+        <div class="footer_item search-item">
+            <div class="footer_item_title">Søk</div>
+            <div class="footer_content">
+                <form class="search-form" action="/no/search.aspx">
+                    <input id="site-search" class="search-bar" name="search" type="search">
+                    <input type="image" class="submit" src="search-01.png">
+                </form>
+            </div>
+        </div>
+    </div>
+    <p2> 2017@Hand of Gold spa - Persgate 15 1460 Bergen - tlf: +4790675847</p2>
+</footer>
+
+</body>
+</html>
