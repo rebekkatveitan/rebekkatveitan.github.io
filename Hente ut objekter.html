@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeg trenger hjelp</title>
+    <style>
+        #boksInfo{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: papayawhip;
+            transform: translate(-50%, -50%);
+            padding: 5%;
+        }
+        h1{
+            font-size: 25px;
+            font-family: open-sans , sans-serif;
+            font-weight: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="boksInfo">
+
+    <h1>Jeg trenger hjelp!</h1>
+
+    <input id="inpNavn" type="text" placeholder="Skriv inn ditt navn">
+    <input id="inpProblem" type="text" placeholder="Hva er ditt problem?">
+    <button id="btnSend">Skriv ut</button>
+    <div id="divProblemer"></div>
+
+    </div>
+
+    <script>
+
+        const inpNavn = document.getElementById("inpNavn");
+        const inpProblem = document.getElementById("inpProblem");
+        const btnSend = document.getElementById("btnSend");
+        const divProblemer = document.getElementById("divProblemer");
+
+        let problemer = [];
+
+        btnSend.onclick = function () {
+            problemer.push({
+                navn: inpNavn.value,
+                problem: inpProblem.value
+            })
+           console.log(problemer);
+            divProblemer.innerHTML = "";
+
+            for (let problem of problemer){
+                divProblemer.innerHTML += `<p>Navn: ${problem.navn}
+                                           <p>Problem: ${problem.problem}</p>`
+
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
