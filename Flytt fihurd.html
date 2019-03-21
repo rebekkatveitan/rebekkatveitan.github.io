@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Flappy-bird</title>
+    <style>
+        canvas {
+            background-color: #333333;
+        }
+        div{
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 5%;
+        }
+        h1{
+            font-size: 25px;
+            font-weight: 100;
+            font-family: open-sans , sans-serif;
+        }
+        p{
+
+        }
+    </style>
+</head>
+
+<body onload="startSpill()">
+
+    <div>
+        <h1>Spill</h1>
+        <p>Hopp og flytt firkanten ved å trykke på "HOPP" knappen,<br>
+            og prøv å ikke komme borti stengene</p>
+
+    </div>
+
+<script>
+
+    var spillFigurd;
+    var spillHindringer = [];
+
+
+    function startSpill() { // figurden
+        spillFigurd = new komponent(27, 27, "pink", 12, 110);
+        spillFigurd.gravity = 0.05;
+        spillPosition.start();
+    }
+
+    var spillPosition = {
+        canvas : document.createElement("canvas"),
+        start : function() {
+            this.canvas.width = 480;
+            this.canvas.height = 270;
+            this.context = this.canvas.getContext("2d");
+            document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+            this.frameNo = 0;
+            this.interval = setInterval(bildeOppdatering, 20);
+        },
+        clear : function() {
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+    }
+
+    function komponent(width, height, color, x, y, type) {
+        this.type = type;
+        this.width = width;
+        this.height = height;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.x = x;
+        this.y = y;
+        this.gravity = 0;
+        this.gravitySpeed = 0;
+        this.update = function() {
+            ctx = spillPosition.context;
+            if (this.type == "text") {
+                ctx.font = this.width + " " + this.height;
+                ctx.fillStyle = color;
+                ctx.fillText(this.text, this.x, this.y);
+            } else {
+                ctx.fillStyle = color;
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+        }
+        this.newPos = function() {
+            this.gravitySpeed += this.gravity;
+            this.x += this.speedX;
+            this.y += this.speedY + this.gravitySpeed;
+            this.trefferBakken();
+        }
+        this.trefferBakken = function() {
+            var rockbottom = spillPosition.canvas.height - this.height;
+            if (this.y > rockbottom) {
+                this.y = rockbottom;
+                this.gravitySpeed = 0;
+            }
+        }
+        this.crashMed = function(otherobj) { // Når figurden kræsjer med hindringene (kordinatene)
+            var spillleft = this.x;
+            var spillright = this.x + (this.width);
+            var spilltop = this.y;
+            var spillbottom = this.y + (this.height);
+            var andrevenstre = otherobj.x;
+            var andrehoyre = otherobj.x + (otherobj.width);
+            var andretop = otherobj.y;
+            var andrebunn = otherobj.y + (otherobj.height);
+            var crash = true;
+            if ((spillbottom < andretop) || (spilltop > andrebunn) || (spillright < andrevenstre) || (spillleft > andrehoyre)) {
+                crash = false;
+            }
+            return crash;
+        }
+    }
+
+    function bildeOppdatering () { // flytter bildet
+        var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+        for (i = 0; i < spillHindringer.length; i += 1) {
+            if (spillFigurd.crashMed(spillHindringer[i])) {
+                return;
+            }
+        }
+        spillPosition.clear();
+        spillPosition.frameNo += 1;
+        if (spillPosition.frameNo == 1 || everyinterval(150)) {
+            x = spillPosition.canvas.width;
+            minHeight = 20;
+            maxHeight = 200;
+            height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+            minGap = 50;
+            maxGap = 200;
+            gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+            spillHindringer.push(new komponent(10, height, "white", x, 0));
+            spillHindringer.push(new komponent(10, x - height - gap, "white", x, height + gap));
+        }
+        for (i = 0; i < spillHindringer.length; i += 1) {
+            spillHindringer[i].x += -1;
+            spillHindringer[i].update();
+        }
+
+        spillFigurd.newPos();
+        spillFigurd.update();
+    }
+
+    function everyinterval(n) {
+        if ((spillPosition.frameNo / n) % 1 == 0) {return true;}
+        return false;
+    }
+
+    function accelerate(n) {
+        spillFigurd.gravity = n;
+    }
+</script>
+<br>
+<button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">HOPP</button>
+
+</body>
+</html>
