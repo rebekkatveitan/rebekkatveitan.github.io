@@ -20,7 +20,8 @@
             font-family: open-sans , sans-serif;
         }
         p{
-
+            font-family: open-sans , sans-serif;
+            font-size: 17px;
         }
     </style>
 </head>
@@ -36,17 +37,17 @@
 
 <script>
 
-    var spillFigurd;
-    var spillHindringer = [];
+    var spillFigurd; // Deklarerer variabelen spillFigur for den hoppende kuben
+    var spillHindringer = []; // Deklarerer et tomt array, spillHindringer, hvor hindringene skal bli lagt til
 
 
-    function startSpill() { // figurden
+    function startSpill() { // Lager kuben til spillfiguren ved å fylle ut parametrene til funksjonen komponent, og gir denne en gravitasjonsverdi på 0,05 for så å starte spillet
         spillFigurd = new komponent(27, 27, "pink", 12, 110);
         spillFigurd.gravity = 0.05;
         spillPosition.start();
     }
 
-    var spillPosition = {
+    var spillPosition = { // Lager "canvaset" (lerretet) til spillet og setter en interval for bildeoppdateringen
         canvas : document.createElement("canvas"),
         start : function() {
             this.canvas.width = 480;
@@ -61,7 +62,7 @@
         }
     }
 
-    function komponent(width, height, color, x, y, type) {
+    function komponent(width, height, color, x, y, type) { // Funksjonen som lager komponenten spillFigur, og tilegner den visse egenskaper
         this.type = type;
         this.width = width;
         this.height = height;
@@ -88,14 +89,14 @@
             this.y += this.speedY + this.gravitySpeed;
             this.trefferBakken();
         }
-        this.trefferBakken = function() {
+        this.trefferBakken = function() { // Dersom spillfigur treffer bakken
             var rockbottom = spillPosition.canvas.height - this.height;
             if (this.y > rockbottom) {
                 this.y = rockbottom;
                 this.gravitySpeed = 0;
             }
         }
-        this.crashMed = function(otherobj) { // Når figurden kræsjer med hindringene (kordinatene)
+        this.crashMed = function(otherobj) { // Dersom spillfigur treffer en hindring
             var spillleft = this.x;
             var spillright = this.x + (this.width);
             var spilltop = this.y;
@@ -112,7 +113,7 @@
         }
     }
 
-    function bildeOppdatering () { // flytter bildet
+    function bildeOppdatering () { // Oppdaterer og flytter bildet mot venstre (negativ x retning)
         var x, height, gap, minHeight, maxHeight, minGap, maxGap;
         for (i = 0; i < spillHindringer.length; i += 1) {
             if (spillFigurd.crashMed(spillHindringer[i])) {
@@ -141,17 +142,17 @@
         spillFigurd.update();
     }
 
-    function everyinterval(n) {
+    function everyinterval(n) { // Returnerer true dersom spillPosition.frameNo / n blir et heltall, ellers returnerer den false
         if ((spillPosition.frameNo / n) % 1 == 0) {return true;}
         return false;
     }
 
-    function accelerate(n) {
+    function accelerate(n) { // Akselererer gravitasjonen (positivt eller negativt) ved å gi den en ny verdi
         spillFigurd.gravity = n;
     }
 </script>
 <br>
-<button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">HOPP</button>
+<button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">HOPP</button> // Gir en naturlig gravitasjon for når du trykker knappen ned og opp
 
 </body>
 </html>
